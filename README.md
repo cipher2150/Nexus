@@ -6,7 +6,7 @@
 
 ## Overview
 
-Modern organizations generate millions of customer events every day, such as logins, page views, searches, purchases, and clicks. Processing this data in real time enables businesses to understand customer behavior, monitor key metrics, and make data-driven decisions.
+Modern organizations generate millions of customer events every day, such as logins, page views, searches, purchases, and clicks. Processing this data in real time enables businesses to understand customer behaviour, monitor key metrics, and make data-driven decisions.
 
 This project simulates a production-grade streaming data platform by combining a **Customer Data Platform (CDP)** with a **Realtime Clickstream Analytics Platform**.
 
@@ -98,9 +98,8 @@ The platform:
 | Processing | Apache Spark (PySpark) |
 | Platform | Databricks |
 | Lakehouse | Delta Lake |
-| Storage | AWS S3 |
 | Analytics | Databricks SQL |
-| AI | Gemini / OpenAI API |
+| AI | Gemini |
 | Version Control | Git, GitHub |
 | Containerization | Docker |
 
@@ -140,8 +139,6 @@ The platform computes real-time metrics including:
 - Monthly Active Users (MAU)
 - Conversion Rate
 - Bounce Rate
-- Average Session Duration
-- Revenue
 - Top Products
 - Customer Engagement
 - Returning Users
@@ -149,30 +146,6 @@ The platform computes real-time metrics including:
 
 ---
 
-# Repository Structure
-
-```text
-customer-data-platform/
-│
-├── producer/
-│   ├── event_generator.py
-│   └── kafka_producer.py
-│
-├── databricks/
-│   ├── 01_stream_ingestion.py
-│   ├── 02_bronze_layer.py
-│   ├── 03_silver_layer.py
-│   ├── 04_gold_layer.py
-│   ├── 05_clickstream_analytics.py
-│   └── 06_ai_business_insights.py
-│
-├── docs/
-├── architecture/
-├── screenshots/
-└── README.md
-```
-
----
 
 # Data Flow
 
@@ -201,21 +174,7 @@ Analytics    AI Insights
 
 ---
 
-# Sample Customer Events
 
-```json
-{
-  "event_id": "evt_001",
-  "user_id": "U1023",
-  "event_type": "purchase",
-  "product": "Laptop",
-  "price": 59999,
-  "country": "India",
-  "device": "Mobile",
-  "browser": "Chrome",
-  "timestamp": "2026-07-03T10:15:30Z"
-}
-```
 
 ---
 
