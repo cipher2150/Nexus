@@ -486,3 +486,147 @@ Structured Event
 
 ---
 
+# 📦 Phase 3 — Bronze Layer (Parquet)
+
+## 🎯 Objective
+
+Transform validated streaming events into an immutable Bronze data lake stored in Parquet format.
+
+---
+
+## 📌 Pipeline
+
+```text
+          Kafka Topic
+      (customer-events)
+               │
+               ▼
+   Spark Structured Streaming
+               │
+               ▼
+      Parse JSON Messages
+               │
+               ▼
+      Validate Event Schema
+               │
+               ▼
+ Convert event_timestamp
+      String → Timestamp
+               │
+               ▼
+  Add Bronze Metadata Columns
+      • event_date
+      • year
+      • month
+               │
+               ▼
+      Write as Parquet Files
+               │
+               ▼
+ Month-wise Partitioned Storage
+               │
+               ▼
+      Streaming Checkpointing
+```
+
+---
+
+## 🏗️ Architecture
+
+```text
+Producer
+   │
+   ▼
+Redpanda (Kafka)
+   │
+   ▼
+Spark Structured Streaming
+   │
+   ▼
+Transformation Layer
+   │
+   ├── Parse JSON
+   ├── Validate Schema
+   ├── Convert Timestamp
+   ├── Add Metadata
+   │
+   ▼
+Bronze Layer (Parquet)
+   │
+   ├── month=7/
+   ├── month=8/
+   ├── month=9/
+   └── ...
+```
+
+---
+
+
+
+## 🔄 Data Transformation
+
+```text
+Incoming Event
+      │
+      ▼
+JSON Record
+      │
+      ▼
+Schema Validation
+      │
+      ▼
+Timestamp Conversion
+      │
+      ▼
+Add:
+ • event_date
+ • year
+ • month
+      │
+      ▼
+Write to Bronze
+```
+
+---
+
+## ✅ Deliverables
+
+- ✔ Real-time Spark Structured Streaming pipeline
+- ✔ JSON parsing using predefined schema
+- ✔ Schema validation
+- ✔ Timestamp conversion
+- ✔ Bronze metadata enrichment
+- ✔ Month-wise Parquet partitioning
+- ✔ Streaming checkpointing
+- ✔ Bronze data validation using Spark
+
+---
+
+## 📊 Current Architecture
+
+```text
+Customer Simulator
+        │
+        ▼
+ Redpanda / Kafka
+        │
+        ▼
+ Spark Streaming
+        │
+        ▼
+ JSON Parsing
+        │
+        ▼
+ Schema Validation
+        │
+        ▼
+ Bronze Transformations
+        │
+        ▼
+ Bronze Parquet Storage
+        │
+        ▼
+ Month-wise Partitions
+```
+
+---
