@@ -6,7 +6,7 @@ KAFKA_TOPIC = "customer-events" # Topic spark will read from
 APP_NAME = "ClickstreamStreaming" # Name shown in Spark UI
 
 # Output Paths
-BRONZE_PATH = "../bronze" # folder where raw events will be stored
+BRONZE_PATH = "./bronze" # folder where raw events will be stored
 
 # Checkpoint Location
-CHECKPOINT_PATH = "../checkpoints/bronze" #Sores spark progress so it can recover after failure
+CHECKPOINT_PATH = "./checkpoints/bronze" #Sores spark progress so it can recover after failure

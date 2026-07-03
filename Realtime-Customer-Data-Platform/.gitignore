@@ -8,6 +8,6 @@ __pycache__/
 *.crc
 .idea/
 
-streaming/checkpoints/
-streaming/bronze/
-streaming/silver/
+checkpoints/
+bronze/
+.metadata
