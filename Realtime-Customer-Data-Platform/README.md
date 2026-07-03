@@ -297,3 +297,192 @@ producer/
 
 ---
 
+# Phase 2 — Real-Time Stream Processing with Spark Structured Streaming
+
+## Overview
+
+In this phase, the clickstream events produced in Phase 1 are consumed from **Redpanda (Kafka API)** using **Apache Spark Structured Streaming**.
+
+The raw JSON events are parsed using a predefined schema, transforming unstructured Kafka messages into structured streaming DataFrames that are ready for processing.
+
+---
+
+# Architecture
+
+```text
+                 ┌────────────────────┐
+                 │ Customer Simulator │
+                 │    (Producer)      │
+                 └─────────┬──────────┘
+                           │
+                           ▼
+                ┌─────────────────────┐
+                │  Redpanda / Kafka   │
+                │ customer-events     │
+                └─────────┬───────────┘
+                          │
+                          ▼
+          ┌────────────────────────────────┐
+          │ Spark Structured Streaming      │
+          │                                │
+          │ • Read Kafka Stream            │
+          │ • Parse JSON                   │
+          │ • Apply Event Schema           │
+          └──────────────┬─────────────────┘
+                         │
+                         ▼
+             Structured Streaming DataFrame
+                         │
+                         ▼
+                  Console Output
+```
+
+---
+
+# Data Flow
+
+```text
+Producer
+    │
+    ▼
+Kafka Topic
+    │
+    ▼
+Binary Kafka Message
+    │
+    ▼
+CAST(value AS STRING)
+    │
+    ▼
+from_json()
+    │
+    ▼
+Structured DataFrame
+    │
+    ▼
+Console Sink
+```
+
+---
+
+# Folder Structure
+
+```
+streaming/
+│
+├── config.py
+├── schema.py
+├── spark_consumer.py
+├── transformations.py
+└── writer.py
+```
+
+---
+
+# Components
+
+| File | Responsibility |
+|------|----------------|
+| `config.py` | Spark and Kafka configuration |
+| `schema.py` | Event schema definition |
+| `spark_consumer.py` | Reads and parses Kafka stream |
+
+---
+
+# Streaming Pipeline
+
+```text
+Kafka Stream
+      │
+      ▼
+Read Stream
+      │
+      ▼
+Deserialize JSON
+      │
+      ▼
+Schema Validation
+      │
+      ▼
+Structured Events
+      │
+      ▼
+Console Sink
+```
+
+---
+
+# Technologies Used
+
+| Technology | Purpose |
+|------------|---------|
+| Apache Spark 4.x | Stream Processing |
+| Spark Structured Streaming | Continuous Data Processing |
+| Redpanda | Kafka-compatible Event Streaming |
+| PySpark | Streaming Application |
+| Docker | Redpanda Deployment |
+| Python | Stream Processing Logic |
+
+---
+
+# Event Schema
+
+```
+Event
+├── Event Information
+│   ├── event_id
+│   ├── event_type
+│   └── event_timestamp
+│
+├── User Information
+│   ├── user_id
+│   └── session_id
+│
+├── Product Information
+│   ├── product_id
+│   ├── product_name
+│   ├── category
+│   ├── price
+│   └── quantity
+│
+├── Location
+│   ├── country
+│   └── city
+│
+└── Device Metadata
+    ├── device
+    ├── browser
+    └── referral_source
+```
+
+---
+
+# Achievements
+
+- ✅ Connected Spark to Redpanda (Kafka API)
+- ✅ Created Spark Structured Streaming application
+- ✅ Consumed real-time events
+- ✅ Parsed JSON messages
+- ✅ Applied predefined event schema
+- ✅ Converted raw Kafka messages into structured DataFrames
+- ✅ Successfully processed continuous event streams
+
+---
+
+# Output
+
+```text
+Kafka Message
+        │
+        ▼
+Raw JSON
+        │
+        ▼
+Spark Schema
+        │
+        ▼
+Structured Event
+```
+
+---
+
