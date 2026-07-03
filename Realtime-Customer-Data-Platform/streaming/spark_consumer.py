@@ -1,11 +1,15 @@
 from pyspark.sql import SparkSession
 from pyspark.sql.functions import from_json, col
 from schema import event_schema
+from transformations import add_bronze_columns
+from writer import write_to_bronze
 
 from config import (
     APP_NAME,
     KAFKA_BOOTSTRAP_SERVERS,
     KAFKA_TOPIC,
+    BRONZE_PATH,
+    CHECKPOINT_PATH,
 )
 
 
@@ -51,17 +55,15 @@ def read_kafka_stream(spark):
         )
         .select("data.*")
     )
-
-    # return parsed_df
-    parsed_df.printSchema()
     
-    query = (
-        parsed_df.writeStream
-        .format("console")
-        .outputMode("append")
-        .option("truncate", False)
-        .option("numRows", 20)
-        .start()
+    bronze_df = add_bronze_columns(parsed_df)
+
+    bronze_df.printSchema()
+
+    query = write_to_bronze(
+        bronze_df,
+        BRONZE_PATH,
+        CHECKPOINT_PATH
     )
 
     query.awaitTermination()
