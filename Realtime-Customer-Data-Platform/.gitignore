@@ -8,5 +8,6 @@ __pycache__/
 *.crc
 .idea/
 
+bronze/
 checkpoints/
 .metadata
