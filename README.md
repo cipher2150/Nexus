@@ -31,12 +31,14 @@ The platform:
                 Python Event Generator
                            │
                            ▼
-                   Apache Kafka
+                   Redpanda (Kafka)
                            │
                            ▼
-      Databricks Structured Streaming (PySpark)
+                     Bronze Parquet
                            │
                            ▼
+-------------------------------------------------------
+                      (Databricks)
                 Bronze Delta Table (Raw)
                            │
                            ▼
