@@ -9,4 +9,4 @@ APP_NAME = "ClickstreamStreaming" # Name shown in Spark UI
 BRONZE_PATH = "./bronze" # folder where raw events will be stored
 
 # Checkpoint Location
-CHECKPOINT_PATH = "./checkpoints/bronze" #Sores spark progress so it can recover after failure
+CHECKPOINT_PATH = "./checkpoints" #Sores spark progress so it can recover after failure

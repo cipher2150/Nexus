@@ -15,7 +15,8 @@ def write_to_bronze(df, output_path, checkpoint_path) -> StreamingQuery:
         .option("checkpointLocation", checkpoint_path)
         .partitionBy(
             "year",
-            "month"
+            "month",
+            "day"
         )
         .start()
     )

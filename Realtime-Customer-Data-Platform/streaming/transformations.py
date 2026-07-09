@@ -3,6 +3,7 @@ from pyspark.sql.functions import (
     to_date,
     year,
     month,
+    dayofmonth,
     col
 )
 
@@ -33,6 +34,10 @@ def add_bronze_columns(df):
         .withColumn(
             "month",
             month(col("event_timestamp"))
+        )
+        .withColumn(
+            "day",
+            dayofmonth(col("event_timestamp"))
         )
     )
 
